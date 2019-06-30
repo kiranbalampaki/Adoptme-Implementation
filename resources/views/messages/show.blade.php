@@ -47,6 +47,8 @@
                     @endif 
 
 
+
+
                         <p>{{$message->message}}</p>
                     </li>
                     <small class="float-left ml-5" style="font-size:12px;">{{ date('h:i A', strtotime($message->created_at)) }}</small>
