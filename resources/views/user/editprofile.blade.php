@@ -21,7 +21,9 @@
                     <input class="form-control p-1 col-8" type="file" name = "image">
         </div>
         <div class="col-3"><?php $img = $user->profile_picture; ?>
-                    <img src="{{asset('assets/uploads/profilepictures/'.$img)}}" height="100"> 
+                    @if ($img!=null)
+                    <img src="{{asset('assets/uploads/profilepictures/'.$img)}}" height="100">
+                    @endif 
         </div>
     </div>
     <button class="btn btn-primary" type="submit">Save</button>

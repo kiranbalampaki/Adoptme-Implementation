@@ -116,12 +116,12 @@ class BlogController extends Controller
          
         $current = $blog->blog_image;
         if($request->hasFile('image')){
-            // $image = $request->file('image');
+            $image = $request->file('image');
             $image=$request->image;
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('../assets/uploads/blogimages'), $new_name);
             $img = '../assets/uploads/blogimages'.$new_name;
-            // $current = $blog->blog_image;
+            $current = $blog->blog_image;
             $blog->blog_image=$img;
             // if($current != $img){
             //     unlink($current);

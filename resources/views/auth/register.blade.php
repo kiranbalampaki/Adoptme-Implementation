@@ -72,7 +72,7 @@
                     <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password" placeholder="Repeat Password">
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Register
                                 </button>
                 <hr>

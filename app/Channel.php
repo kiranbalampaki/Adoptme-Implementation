@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Channel extends Model
 {
+    protected $fillable = ['first_user','second_user'];
+
     public function users(){
         return $this->belongsToMany('App\User');
     }

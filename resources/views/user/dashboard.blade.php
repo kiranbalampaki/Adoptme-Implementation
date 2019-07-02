@@ -150,8 +150,12 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->firstname }}</span>
-                        <?php $img = Auth::user()->profile_picture ; ?>
+                <?php $img = Auth::user()->profile_picture ; ?>
+                @if ($img != null)
                 <img class="img-profile rounded-circle" src="{{asset('assets/uploads/profilepictures/'.$img)}}">
+                @else
+                <img class="img-profile rounded-circle ml-5" src="https://image.flaticon.com/icons/svg/145/145843.svg">
+                @endif
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

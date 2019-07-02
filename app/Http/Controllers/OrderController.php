@@ -45,10 +45,10 @@ class OrderController extends Controller
     {
         // dd(request()->all());
         $request->validate([
-            'quantity'    =>  'required',
-            'total'     =>  'required',
-            'payment_option'     =>  'required',
-            'product_id'     =>  'required',
+            // 'quantity'    =>  'required',
+            // 'total'     =>  'required',
+            // 'payment_option'     =>  'required',
+            // 'product_id'     =>  'required',
         ]);
 
         $order = new Order();

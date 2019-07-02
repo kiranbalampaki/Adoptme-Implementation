@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="mt-4">
-                            <a class="btn btn-primary" href="{{route('orders.edit',['id'=>$product->id])}}">Book</a>
+                            <a class="btn btn-primary" href="{{route('orders.edit',['id'=>$product->id])}}">Buy</a>
                             {{-- <form action="{{route('orders.create', $product->id)}}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
@@ -31,7 +31,7 @@
                                 <input type="text" name="second_user" value="{{$pet->user_id}}" hidden>
                                 <input type="text" name="pet_id" value="{{$pet->id}}" hidden> --}}
                                 {{-- <button class="btn btn-primary" type="submit">Buy</button> --}}
-                                </form> --}}
+                                </form>
                             </div>
                         </div>
                         

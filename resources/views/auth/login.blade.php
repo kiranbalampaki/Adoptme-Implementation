@@ -61,7 +61,7 @@
                         <label class="custom-control-label" for="remember">Remember Me</label>
                       </div>
                     </div>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Login
                                 </button>
                     <hr>

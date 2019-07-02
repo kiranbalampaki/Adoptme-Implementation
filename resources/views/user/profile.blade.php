@@ -90,8 +90,11 @@
                 <!-- Card Body -->
                 <div class="row my-4">
                         <?php $img = Auth::user()->profile_picture ; ?>
-                        {{-- <img class="img-profile rounded-circle ml-5" src="https://image.flaticon.com/icons/svg/145/145843.svg"> --}}
+                        @if ($img != null)
                         <img class="img-profile rounded-circle ml-5" src="{{asset('assets/uploads/profilepictures/'.$img)}}">
+                        @else
+                        <img class="img-profile rounded-circle ml-5" src="https://image.flaticon.com/icons/svg/145/145843.svg">
+                        @endif
                         <div class="ml-4">
                           <h2 style="color:black;">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h2>
                           <p class="mt-3">{{ Auth::user()->email }}</p>
