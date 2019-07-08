@@ -68,7 +68,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
 
         $product->save();
-        // Session::flast('success','Successfully done bro.');
+        
         return redirect()->back()->with('success','Product added successfully!');
     }
 

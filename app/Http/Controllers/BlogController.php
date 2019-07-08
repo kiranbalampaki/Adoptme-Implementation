@@ -117,15 +117,9 @@ class BlogController extends Controller
         $current = $blog->blog_image;
         if($request->hasFile('image')){
             $image = $request->file('image');
-            $image=$request->image;
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('../assets/uploads/blogimages'), $new_name);
-            $img = '../assets/uploads/blogimages'.$new_name;
-            $current = $blog->blog_image;
-            $blog->blog_image=$img;
-            // if($current != $img){
-            //     unlink($current);
-            // }
+            $image->move(public_path('assets/uploads/blogimages'), $new_name);
+            $blog->blog_image = $new_name;
         }
         
         $blog->save();
@@ -142,7 +136,7 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         
-        unlink($blog->blog_image);
+        // unlink($blog->blog_image);
         $blog->delete();
 
         return redirect()->back()->with('success','Blog deleted successfully!');        

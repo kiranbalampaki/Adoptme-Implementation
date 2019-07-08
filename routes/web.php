@@ -43,7 +43,7 @@ Route::get('user/update', 'AdminController@update');
 // Route::get('blogs/destroy', 'BlogController@destroy');
 
 
-Route::get('user/petindex', 'UserController@petindex');
+Route::get('user/petindex', 'UserController@petindex')->name('petindex');
 Route::get('user/purchases', 'UserController@purchaseindex');
 // Route::group(['middleware' => 'auth'], function() {
 Route::resource('user', 'UserController');

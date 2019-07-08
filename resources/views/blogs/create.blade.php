@@ -13,7 +13,7 @@
         <input class="form-control" type="text" name="title">
     </div>
     <div class="col-6">
-                <label for="image">Product Image</label>
+                <label for="image">Blog Image</label>
                 <input class="form-control p-1 col-8" type="file" name = "image">
     </div>
     </div>

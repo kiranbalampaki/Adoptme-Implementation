@@ -91,7 +91,7 @@ class PetController extends Controller
         $pet->user_id = $request->user()->id;
         
         $pet->save();
-        return redirect()->back()->with('success','Pet added successfully!');
+        return redirect()->route('petindex')->with('success','Pet added successfully!');
     }
 
     /**
