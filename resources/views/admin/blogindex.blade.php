@@ -6,6 +6,8 @@
     <div class="row">
         <div class="col-md-12 table-responsive">
             <table class="table table-sm table-hover table-bordered">
+
+                @if (count($blogs)>0)
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>ID</th>
@@ -41,9 +43,13 @@
                     </tr>                        
                     @endforeach
                     @else
-                    <p>no blogs</p>
+                    <p>No Blogs</p>
                     @endif
                 </tbody>
+                @else
+                    <div class="mx-auto mt-5" style="background:url({{asset('assets/landingimages/noblogs.png')}});background-position:center;background-size:cover;height:300px; width:300px;"></div>
+                    <p class="text-center">No Blogs</p>
+                @endif     
                 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
                 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
                 <script>

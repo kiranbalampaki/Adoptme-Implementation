@@ -22,6 +22,30 @@
                                 {{ \App\User::where(['id' => $channel->first_user])->pluck('lastname')->first() }}
                 </p>
             @endif
+            
+            <div class="float-right mr-4 row">
+            <?php $petimg = \App\Pet::where(['id' => $channel->pet_id])->pluck('pet_photo')->first() ?>
+            <img src="{{asset('assets/uploads/pets/'.$petimg)}}" style="height:32px; border-radius:0; object-fit:cover;" class="mt-3"/>
+            <p class="name mr-5">{{ \App\Pet::where(['id' => $channel->pet_id])->pluck('name')->first() }}</p>
+            
+            @if ($channel->second_user==Auth::user()->id)
+                <?php $petstatus = \App\Pet::where(['id' => $channel->pet_id])->pluck('is_adopted')->first() ?>
+                @if ($petstatus == FALSE)
+                                        <form action="{{ route('pets.update',['id'=>$channel->pet_id]) }}" method="POST" class="ml-2">
+                                            Mark as adopted
+                                            <input type="checkbox" checked name="is_adopted" value="TRUE" hidden>
+                                            {{ csrf_field() }}
+                                            {{ method_field('PUT') }}
+                                            <button type="submit" class="btn btn-info btn-sm ml-1 mr-4" data-toggle="tooltip" data-placement="bottom" title="Update as adopted"><i class="fa fa-check"></i></button>
+                                        </form>
+                @else
+                ADOPTED
+                @endif
+            @endif
+            <div>
+            <a href="/" class="d-none d-sm-inline-block btn btn-md btn-primary"><i class="fa fa-home"></i></a>
+            </div>
+            </div>
 		</div>
 		<div class="messages pb-3" id="messages">
 			<ul>

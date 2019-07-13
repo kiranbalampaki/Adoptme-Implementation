@@ -37,9 +37,9 @@
             <table class="table table-sm table-hover table-bordered">
                 <thead class=" text-center">
                     <tr>
-                        <th>ID</th>
+                        <th>S.N.</th>
                         <th>Category Name</th>
-                        <th>Created At</th>
+                        <th>Items in this Category</th>
                         <th>Operations</th>
                     </tr>
                 </thead>
@@ -50,7 +50,7 @@
                     <tr>
                         <td class="text-center">{{$i}}</td>
                         <td>{{$category->category_name}}</td>
-                        <td>{{$category->created_at}}</td>
+                        <td class="text-center">{{ \App\Product::where(['category_id' => $category->id])->count() }}</td>
                         <td class="text-center align-middle">
                         <div class="btn-group">
                             <form action="{{ route('categories.destroy',['id'=>$category->id]) }}" method="POST">

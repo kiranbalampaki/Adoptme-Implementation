@@ -126,9 +126,12 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd(request()->all());
+        $pet = Pet::findOrFail($id);
+        $pet->is_adopted = $request->input('is_adopted') ? true : false;
+        $pet->save();
+        return redirect()->back()->with('success','Status updated successfully!');
     }
-
     /**
      * Remove the specified resource from storage.
      *

@@ -36,14 +36,24 @@
                         <td class="text-center"><img src="{{asset('assets/uploads/pets/'.$img)}}" height="100"></td>
                         <td>{!!str_limit($pet->details, 155, '....')!!}</td>
                         <td class="text-center align-middle">
-                            <div class="btn-group">
-                                <a href="{{route('blogs.edit',['id'=>$pet->id])}}" class="btn btn-primary btn-sm mr-2"><i class="fa fa-pencil"></i></a>
-                                <form action="{{ route('pets.destroy',['id'=>$pet->id]) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
+                            @if ($pet->is_adopted == FALSE)
+                                <div class="btn-group">
+                                    <a href="{{route('pets.edit',['id'=>$pet->id])}}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+                                    <form action="{{ route('pets.destroy',['id'=>$pet->id]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                    <form action="{{ route('pets.update',['id'=>$pet->id]) }}" method="POST">
+                                        <input type="checkbox" checked name="is_adopted" value="TRUE" hidden>
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+                                        <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Update as adopted"><i class="fa fa-check"></i></button>
+                                    </form>
+                                </div>
+                            @else
+                            adopted
+                            @endif
                         </td>
                     </tr>                        
                 </tbody>

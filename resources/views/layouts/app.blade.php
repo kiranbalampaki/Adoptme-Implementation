@@ -90,6 +90,23 @@
         opacity: 1;
         }
 
+        .productcard .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #55dcd6;
+        }
+
+        .productcard:hover .overlay {
+        opacity: 1;
+        }
+
         .cart-button{
             width:120px;
             background-color:black;
@@ -148,7 +165,7 @@
                     <a class="nav-link" href="{{ route('pets.index')}}">Pets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('blogs.index')}}">Products</a>
+                    <a class="nav-link" href="{{ route('products.index')}}">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('blogs.index')}}">Blogs</a>
@@ -211,7 +228,7 @@
             <div class="cart-items mt-5">
                 <div class="row">
                     <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/{{$product->product_image}}" alt="">
+                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
                     </div>
                     <div class="ml-4">
                         <p class="mt-1">Product Name</p>
@@ -220,7 +237,7 @@
                 </div>
                 <div class="row">
                     <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/{{$product->product_image}}" alt="">
+                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
                     </div>
                     <div class="ml-4">
                         <p class="mt-1">Product Name</p>
@@ -229,7 +246,7 @@
                 </div>
                 <div class="row">
                     <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/{{$product->product_image}}" alt="">
+                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
                     </div>
                     <div class="ml-4">
                         <p class="mt-1">Product Name</p>
@@ -238,7 +255,7 @@
                 </div>
                 <div class="row">
                     <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/{{$product->product_image}}" alt="">
+                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
                     </div>
                     <div class="ml-4">
                         <p class="mt-1">Product Name</p>

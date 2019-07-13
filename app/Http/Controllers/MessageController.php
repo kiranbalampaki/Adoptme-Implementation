@@ -77,6 +77,7 @@ class MessageController extends Controller
         $currentuserid = Auth::user()->id;
         $channels = Channel::where('first_user','=',$currentuserid)->
                             orWhere('second_user','=',$currentuserid)->
+                            orderBy('id','desc')->
                             get();
         $messages= Message::where('channel_id','=',$id)->orderBy('created_at')->get();
         $users = User::all();

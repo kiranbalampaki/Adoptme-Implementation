@@ -1,11 +1,11 @@
 @extends('admin.dashboard')
 
 @section('content')
-<h2 class="text-center py-2">Your Blogs</h2>
+<h2 class="text-center py-2">Products</h2>
 <div class="container">
     <div class="row">
         <div class="col-md-12 table-responsive">
-            <table class="table table-sm table-hover table-bordered">
+            <table class="table table-sm table-hover table-bordered" style="font-size:13px">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>S.N.</th>
@@ -15,7 +15,6 @@
                         <th>Stock</th>
                         <th>Description</th>
                         <th>Category</th>
-                        <th>Date Added</th>
                         <th>Operations</th>
                     </tr>
                 </thead>
@@ -28,13 +27,12 @@
                         <td>{{$i}}</td>
                         <td>{{$product->product_name}}</td>
                         <td>
-                            <img src="{{asset('assets/uploads/products/'.$img)}}" height="100">                            
+                            <img src="{{asset('assets/uploads/products/'.$img)}}" height="50">                            
                         </td>
-                        <td>{{$product->price}}</td>
+                        <td>Rs. {{$product->price}}</td>
                         <td>{{$product->stock}}</td>
-                        <td>{!!str_limit($product->description, 250, '....')!!}</td>
+                        <td class="text-justify">{!!str_limit($product->description, 250, '....')!!}...</td>
                         <td>{{ $categories->where('id', $product->category_id)->pluck('category_name')->first() }}</td>
-                        <td>{{ date('Y-m-d', strtotime($product->created_at)) }}</td>
                         <td class="text-center align-middle">
                         <div class="btn-group">
                             <a href="{{route('products.edit',['id'=>$product->id])}}" class="btn btn-primary btn-sm mr-2"><i class="fa fa-pencil"></i></a>

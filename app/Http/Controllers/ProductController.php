@@ -16,9 +16,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
+        $products = Product::all();
+        $categories = ProductCategory::all();
+
+        if(!empty($request->category)){
+            $products=Product::where('category_id', '=', $request->category)->get();
+        }
+
+        return view('products.index', compact('products','categories'));
     }
 
     public function productindex(){

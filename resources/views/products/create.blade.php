@@ -1,12 +1,12 @@
 @extends('admin.dashboard')
 
 @section('content')
-@if ($message = Session::get('success'))
+{{-- @if ($message = Session::get('success'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">×</button>	
         <strong>{{ $message }}</strong>
 </div>
-@endif
+@endif --}}
 
 <div class="card card border-left-primary shadow mb-4">
                 <div class="card-header py-3">

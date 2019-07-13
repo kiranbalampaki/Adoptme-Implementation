@@ -36,7 +36,7 @@
                 </tbody>
                 @endforeach
                 @else
-                    <div class="mx-auto mt-5" style="background:url({{asset('assets/landingimages/nopost.png')}});background-position:center;background-size:cover;height:220px; width:220px;"></div>
+                    <div class="mx-auto mt-5" style="background:url({{asset('assets/landingimages/nosales.png')}});background-position:center;background-size:cover;height:220px; width:220px;"></div>
                     <p class="text-center">No Purchases</p>
                 @endif                
                 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>

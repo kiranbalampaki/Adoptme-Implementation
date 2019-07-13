@@ -35,9 +35,9 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="{{ route('user.index')}}">
-          <i class="fa fa-tachometer"></i>
-          <span>Dashboard</span></a>
+        <a class="nav-link" href="/">
+          <i class="fa fa-home"></i>
+          <span>Go to Home</span></a>
       </li>
 
       <hr class="sidebar-divider">
