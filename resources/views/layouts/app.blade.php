@@ -113,6 +113,12 @@
             border-radius:50px;
         }
 
+        .cart-button-lg{
+            width:200px;
+            background-color:black;
+            border-radius:50px;
+        }
+
         .cart-button:hover{
             color:#55dcd6;
         }
@@ -141,6 +147,57 @@
 .cart-items::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+#essenceCartBtn{
+  float: left;
+  margin-right: -5px;
+  width: 70px;
+  height: 70px;
+  border: 1px solid #A7B9C3;
+  /*border-radius: 50%;*/
+  background: white;
+  box-shadow: -5px 5px 3px -1px #dbdbdb;
+  color: #4A5359;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 25px;
+  line-height: 40px;
+  cursor: pointer;
+  transition: color .2s ease-in;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+#essenceCartBtn:hover{
+  color: #55dcd6;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  right: 0;
+  background-color:  ;
+  overflow: hidden;
+  width: 0;
+  height: auto;
+  transition: 1s ease;
+}
+
+.card:hover .overlay {
+  width: 100%;
+  left: 0;
+}
+
+.cartbuttonhidden{
+    display:none;
+}
+
+.chkoutinput{
+	border: none;
+    outline: none;
+    font-size:17px;
+    border-bottom: 1px solid rgba(0,0,0,.5);
+}
 </style>
 
 </head>
@@ -156,21 +213,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                <li class="nav-item {{ Request::segment(1)=='' ? 'active' : '' }}">
+                    <a class="nav-link" href="/">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::segment(1)=='pets' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('pets.index')}}">Pets</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::segment(1)=='products' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('products.index')}}">Products</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::segment(1)=='blogs' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('blogs.index')}}">Blogs</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::segment(1)=='help' ? 'active' : '' }}">
                     <a class="nav-link" href="/help">How It Works</a>
                 </li>     
                 <li class="nav-item">
@@ -215,109 +272,60 @@
                 {{-- <a class="nav-link" href="#" id="essenceCartBtn"><i class="fa fa-shopping-cart fa-2x"></i></a> --}}
         </div>
     </nav>
-    
-    <button id="essenceCartBtn"><i class="fa fa-shopping-cart"></i><span>3</span></button>
 
-    <div class="right-side-cart-area p-3">
+    @if(session('cart'))
+    <button class="{{ Request::segment(1)=='cart' ? 'cartbuttonhidden' : '' }}" id="essenceCartBtn"><i class="fa fa-shopping-cart"></i><span>{{ count(session('cart')) }}</span></button>
+    @endif
+    <div class="right-side-cart-area p-1">
         <div class="p-5">
-            <div class="row my-auto">
-                <h5>YOUR CART</h5>
+            
+            <?php $total = 0 ?>
+
+            @if(session('cart'))
+
+            <div class="row my-auto pb-3" style="border-bottom:solid 0.5px #dddddd;">
+                <i class="fa fa-shopping-cart fa-2x"></i>
+                <p class="badge ml-1">{{ count(session('cart')) }}</p>
                 <a class="ml-auto mr-5" style="cursor:pointer;" id="rightSideCart"><i class="fa fa-times" style="font-size:20px;"></i></a>
             </div>
 
-            <div class="cart-items mt-5">
-                <div class="row">
+            {{-- <p class="mt-2">{{ count(session('cart')) }} items</p> --}}
+            <div class="cart-items mt-4">
+
+            @foreach(session('cart') as $id => $details)
+            <?php $total += $details['price'] * $details['quantity'] ?>
+
+                <div class="row mb-5">
                     <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
+                        <img style="width: 100px; height: 100px; object-fit: cover; margin:auto;" src="assets/uploads/products/{{ $details['photo'] }}" alt="">
                     </div>
                     <div class="ml-4">
-                        <p class="mt-1">Product Name</p>
-                        <p style="color:grey">1 x 300</p>
+                        <p class="mt-1">{{ str_limit($details['name'], 20) }}</p>
+                            <div class="row ml-0">
+                                <p style="font-size: 12px; color:blue">Rs {{ $details['price'] }}</p>
+                                <p class="ml-3" style="font-size: 12px; color:grey">Quantity: {{ $details['quantity'] }}</p>
+                            </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
-                    </div>
-                    <div class="ml-4">
-                        <p class="mt-1">Product Name</p>
-                        <p style="color:grey">1 x 300</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
-                    </div>
-                    <div class="ml-4">
-                        <p class="mt-1">Product Name</p>
-                        <p style="color:grey">1 x 300</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>
-                        <img class="img-fluid" style="width: 80px; height: 100px; object-fit: cover;" src="assets/uploads/products/" alt="">
-                    </div>
-                    <div class="ml-4">
-                        <p class="mt-1">Product Name</p>
-                        <p style="color:grey">1 x 300</p>
-                    </div>
-                </div>
+
+            @endforeach
+
             </div>
 
-            <div class="mt-3">
-            <h4>Total: Rs 500</h4>
+            <div class="mt-5">
+            <h4>Total : {{ $total }}</h4>
             </div>
 
             <div class="row mt-5">
-                <button class="btn btn-dark cart-button">View Cart</button>
+                <a href="/cart" class="btn btn-dark cart-button">View Cart</a>
                 <button class="btn btn-dark cart-button ml-auto">Check Out</button>
             </div>
+
+            @endif
+
         </div>
     </div>
-    {{-- <div class="right-side-cart-area">
-
-        <!-- Cart Button -->
-        <div class="cart-button">
-            <a href="#" id="rightSideCart"><i class="fa fa-arrow-right"></i></a>
-        </div>
-
-        <div class="cart-content d-flex">
-
-            <!-- Cart List Area -->
-            <div class="cart-list">
-                <!-- Single Cart Item -->
-                <div class="single-cart-item">
-                    <a href="#" class="product-image">
-                        <img class="card-img-top img-fluid" style="width: 100%; height: 15vw; object-fit: cover;" src="assets/uploads/blogimages/{{$blog->blog_image}}" alt="">
-                        <!-- Cart Item Desc -->
-                        <div class="cart-item-desc">
-                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                            <h6>Product Name</h6>
-                            <p>Description</p2>
-                            <p class="price">$45.00</p>
-                        </div>
-                    </a>
-                </div>
-
-
-            </div>
-
-            <!-- Cart Summary -->
-            <div class="cart-amount-summary">
-
-                <h2>Summary</h2>
-                <ul class="summary-table">
-                    <li><span>Number of items:</span> <span>3</span></li>
-                    <li><span>total:</span> <span>$232.00</span></li>
-                </ul>
-                <div class="mt-5">
-                    <button class="btn btn-secondary btn-lg">Check Out</button>
-                    <button class="btn btn-secondary btn-lg ml-5">Check Out</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
+    
     @include('flash-message')
     @yield('content')
 

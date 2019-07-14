@@ -2,7 +2,7 @@
 
         .right-side-cart-area {
   position: fixed;
-  width: 350px;
+  width: 400px;
   height: 100%;
   top: 0px;
   right: -800px;
@@ -217,21 +217,39 @@
 
           #essenceCartBtn{
   position: fixed;
-  top: 80px;
-  right: 30px;
+  top: 100px;
+  right: 0px;
   z-index: 99;
-  font-size: 18px;
-  border: none;
   outline: none;
-  background-color: black;
-  color: #55dcd6;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-  width:60px;
 }
     #essenceCartBtn span {
       font-size: 15px;
-      color: white;
+      color: black;
       position: absolute;
-      top: 0px; }
+      top: 5px;
+      right:10px;
+      background-color: #6394F8;
+          background-color: #6394F8;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    }
+
+    .badge {
+    background-color: #6394F8;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}

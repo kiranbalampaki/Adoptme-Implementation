@@ -34,7 +34,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="/">
           <i class="fa fa-home"></i>
           <span>Go to Home</span></a>
@@ -46,13 +46,13 @@
         Interface
       </div>
 
-      <li class="nav-item">
+      <li class="nav-item {{ Request::url() == url('/user') ? 'active' : '' }}">
         <a class="nav-link" href="../user">
           <i class="fa fa-user"></i>
           <span>Profile</span></a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {{ Request::segment(1)=='pets' ? 'active' : '' || Request::url() == url('/user/petindex') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-dog"></i>
           <span>Pets</span>
@@ -66,7 +66,7 @@
         </div>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {{ Request::url() == url('/user/purchases') ? 'active' : '' }}">
         <a class="nav-link" href="../user/purchases">
           <i class="fa fa-tags"></i>
           <span>Purchases</span></a>
@@ -154,7 +154,7 @@
                 @if ($img != null)
                 <img class="img-profile rounded-circle" src="{{asset('assets/uploads/profilepictures/'.$img)}}">
                 @else
-                <img class="img-profile rounded-circle ml-5" src="https://image.flaticon.com/icons/svg/145/145843.svg">
+                <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/svg/145/145843.svg">
                 @endif
               </a>
               <!-- Dropdown - User Information -->

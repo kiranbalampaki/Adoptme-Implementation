@@ -16,6 +16,9 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/help', 'PagesController@help');
 
+
+Route::get('/cart', 'PagesController@cart');
+
 Route::resource('pets', 'PetController');
 Route::resource('admin', 'AdminController');
 
@@ -57,5 +60,7 @@ Route::resource('channels', 'ChannelController');
 // Route::get('messages/{message}', 'MessageController@store');
 
 Route::resource('blogs', 'BlogController');
-
+Route::get('add-to-cart/{id}', 'ProductController@addToCart');
+Route::patch('update-cart', 'ProductsController@update');
+Route::delete('remove-from-cart', 'ProductsController@remove');
 // });
