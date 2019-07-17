@@ -14,8 +14,8 @@ class PagesController extends Controller
         $pets = Pet::where('is_adopted','0')->orderBy('id','desc')->take(4)->get();
         $blogs = Blog::orderBy('id','desc')->take(3)->get();
         $products = Product::orderBy('id','desc')->take(4)->get();
-        $category = ProductCategory::all();
-        return view('pages.index', compact('pets', 'blogs','products','category'));
+        $categories = ProductCategory::all();
+        return view('pages.index', compact('pets', 'blogs','products','categories'));
     }
 
     public function about(){

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\ProductCategory;
 use App\Product;
+use App\Review;
+use App\User;
 use Session;
 use File;
 
@@ -19,13 +21,15 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::orderBy('id','desc')->Paginate(6);
+        $allproducts = Product::orderBy('id','desc')->get();
         $categories = ProductCategory::all();
+        $reviews = Review::all();
 
         if(!empty($request->category)){
-            $products=Product::where('category_id', '=', $request->category)->get();
+            $products=Product::where('category_id', '=', $request->category)->Paginate(6);
         }
 
-        return view('products.index', compact('products','categories'));
+        return view('products.index', compact('products','allproducts','categories','reviews'));
     }
 
     public function productindex(){
@@ -89,7 +93,10 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $category = ProductCategory::find($product->category_id);
-        return view('products.show', compact('product','category'));
+        $reviews = Review::where('product_id', $product->id)->get();
+        $userreviews = Review::where('product_id', $product->id)->Paginate(4)->onEachSide(5);
+        $users = User::all();
+        return view('products.show', compact('product','category','reviews','users','userreviews'));
     }
 
     /**

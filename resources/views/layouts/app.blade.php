@@ -72,19 +72,6 @@
             background-position:center;
             object-fit: contain;
         }
-        
-        .petcard .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        opacity: 0;
-        transition: .5s ease;
-        background-color: #55dcd6;
-        }
 
         .petcard:hover .overlay {
         opacity: 1;
@@ -180,7 +167,7 @@
   overflow: hidden;
   width: 0;
   height: auto;
-  transition: 1s ease;
+  transition: 0.5s ease;
 }
 
 .card:hover .overlay {
@@ -197,6 +184,16 @@
     outline: none;
     font-size:17px;
     border-bottom: 1px solid rgba(0,0,0,.5);
+}
+.card{
+    border:none;
+}
+#unstyled-link{
+    color:inherit;
+}
+
+.card:hover a{
+    text-decoration:underline;
 }
 </style>
 
@@ -297,7 +294,7 @@
 
                 <div class="row mb-5">
                     <div>
-                        <img style="width: 100px; height: 100px; object-fit: cover; margin:auto;" src="assets/uploads/products/{{ $details['photo'] }}" alt="">
+                        <img style="width: 100px; height: 100px; object-fit: cover; margin:auto;" src="../assets/uploads/products/{{ $details['photo'] }}" alt="">
                     </div>
                     <div class="ml-4">
                         <p class="mt-1">{{ str_limit($details['name'], 20) }}</p>

@@ -13,10 +13,14 @@
             <label for="name">Name</label>
             <input class="form-control" type="text" name="name">
         </div>
-    <div class="col-4">
-                <label for="image">Pet's Photo</label>
-                <input class="form-control p-1 col-8" type="file" name = "image">
-    </div>
+        <div class="col-4">
+                    <label for="breed">Pet's Breed</label>
+                    <input class="form-control p-1 col-8" type="text" name = "breed">
+        </div>
+        <div class="col-4">
+                    <label for="image">Pet's Photo</label>
+                    <input class="form-control p-1 col-8" type="file" name = "image">
+        </div>
     </div>
     <div class="form-group row">
         <div class="col-3">

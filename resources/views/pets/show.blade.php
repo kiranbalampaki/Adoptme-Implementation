@@ -18,10 +18,11 @@
                             <p class="lead font-weight-bold">{{$pet->name}}</p>
 
                             <p>
+                                {{$pet->breed}}
                                 @if($pet->gender=='m')
-                                    <i class="fa fa-mars pr-1"></i> Male
+                                    <i class="fa fa-mars ml-4 pr-1"></i> Male
                                 @else
-                                    <i class="fa fa-venus pr-1"></i> Female
+                                    <i class="fa fa-venus ml-4 pr-1"></i> Female
                                 @endif
                                 <hr>
                                 {{$pet->age}}&ensp;&ensp;•&ensp;&ensp;{{$pet->size}}&ensp;&ensp;•&ensp;&ensp;{{$pet->color}}

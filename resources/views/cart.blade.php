@@ -104,6 +104,16 @@
             </div>
 
             <div class="row mt-4">
+                <div class="col-6">
+                    <h5>Payment Method:</h5>
+                </div>
+                <div class="col-6">
+                    <select class="form-control" name="payment_option">
+                        <option value="esewa">Esewa</option>
+                        <option value="khalti">Khalti</option>
+                        <option value="paypal">Paypal</option>
+                    </select>
+                </div>
             </div>
 
             <div class="row mt-4">

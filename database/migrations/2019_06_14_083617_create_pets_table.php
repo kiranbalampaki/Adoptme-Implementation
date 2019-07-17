@@ -18,6 +18,7 @@ class CreatePetsTable extends Migration
             $table->enum('type',['cat','dog']);
             $table->string('pet_photo');
             $table->string('name');
+            $table->string('breed');
             $table->enum('gender',['m','f']);
             $table->enum('age',['young','adult','senior']);
             $table->enum('size',['small','medium','large','extra large']);

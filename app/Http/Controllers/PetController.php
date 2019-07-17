@@ -20,7 +20,7 @@ class PetController extends Controller
      */
     public function index(Request $request)
     {
-        $pets = Pet::where('is_adopted','FALSE')->orderBy('id','desc')->get();
+        $pets = Pet::where('is_adopted','FALSE')->orderBy('id','desc')->paginate(12);
         if(!empty($request->type)){
             $pets=Pet::where('type', '=', $request->type)->get();
         }
@@ -65,6 +65,7 @@ class PetController extends Controller
             'type'    =>  'required',
             'image'    =>  'required|image|max:2048',
             'name'     =>  'required',
+            'breed'     =>  'required',
             'gender'     =>  'required',
             'age'     =>  'required',
             'size'     =>  'required',
@@ -81,6 +82,7 @@ class PetController extends Controller
         $pet->type = $request->type;
         $pet->pet_photo = $new_name;
         $pet->name = $request->name;
+        $pet->breed = $request->breed;
         $pet->gender = $request->gender;
         $pet->age = $request->age;
         $pet->size = $request->size;

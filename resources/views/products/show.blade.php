@@ -1,60 +1,145 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid mt-3">
-    <div class="container">
-        <div class="row text-justify">
-            {{-- main --}}
-            <div class="col-9 col-sm-9 col-xs-8">
-                <div class="row">
-                    {{-- pet --}}
-                    <div class="col-md-6 mb-4">
-                        <img src="../assets/uploads/products/{{$product->product_image}}" class="img-fluid" style="width:100%;" alt="">
-                    </div>
-                    {{-- pet detail --}}
-                    <div class="col-md-6 mb-4">
-            
-                        <div class="p-4">
-                            <p class="lead font-weight-bold">{{$product->product_name}}</p>
-
-                            <p>price</p><hr>
-
-                            <div class="row mx-1">
-                            </div>
-
-                            <div class="mt-4">
-                            <a class="btn btn-primary" href="{{route('orders.edit',['id'=>$product->id])}}">Buy</a>
-                            {{-- <form action="{{route('orders.create', $product->id)}}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
-                                {{-- <input type="text" name="first_user" value="{{Auth::user()->id}}" hidden>
-                                <input type="text" name="second_user" value="{{$pet->user_id}}" hidden>
-                                <input type="text" name="pet_id" value="{{$pet->id}}" hidden> --}}
-                                {{-- <button class="btn btn-primary" type="submit">Buy</button> --}}
-                                </form>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    {{-- <a href="/pets">Go Back</a><br>
-                    <img class="img-fluid mt-2" style="width: 100%; height: 20vw; object-fit: cover;" src="../assets/uploads/pets/{{$pet->pet_photo}}">
-                    
-                    <div class="px-2">
-                        <h1 class="mt-3" style="font-size:2.5vw; font-weight:bold;">{{$pet->name}}</h1>                
-                        <small><i class="fa fa-clock-o pr-2"></i>{{$pet->created_at}}</small>
-                        <p>{!!$pet->details!!}</p>
-                    </div> --}}
+<div class="container mt-5">
+    <div class="row">
+        {{-- image --}}
+        <div class="col-sm-12 col-md-6 mb-2">
+            <div class="row">
+                <div class="col-md-4 d-none d-md-block">
                 </div>
-                
+                <div class="col-12 col-md-8">
+                    <img src="../assets/uploads/products/{{$product->product_image}}" class="img-fluid float-right" style="width:100%;" alt="">
+                </div>
             </div>
-            {{-- main --}}
-
-            <div class="col-3 col-sm-3 col-xs-4 bg-secondary p-3">
-                <div><h5 class="text-light text-center">More</h5></div>
-                <hr>
-            </div>
-
         </div>
+        {{-- description --}}
+        <div class="col-sm-12 col-md-6">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <h4 class="font-weight-bold">{{$product->product_name}}</h4>
+                    <p class="text-muted font-italic">{{ $category->category_name }}</p>
+
+                    <?php $rating = $reviews->where('product_id', $product->id)->avg('rating') ?>
+
+                    <p>
+                        <div>
+                            @for ($i = 0; $i < 5; $i++)
+                                @if($rating>0)
+                                    @if($rating >0.5)
+                                        <i class="fa fa-star"></i>
+                                    @else
+                                        <i class="fa fa-star-half-empty"></i>
+                                    @endif
+                                    @php $rating--; @endphp
+                                @else
+                                    <i class="fa fa-star-o"></i>
+                                @endif
+                            @endfor
+                            <span>
+                            <u>{{ $reviews->count() }}
+                            @if ($reviews->count()==1)
+                            review
+                            @else
+                            reviews
+                            @endif</u>
+                            </span>
+                        </div>
+                    </p>
+
+                    <p>{!!$product->description!!}</p>
+
+                    <a href="{{ url('add-to-cart/'.$product->id) }}" class="btn btn-outline-dark btn-rounded btn-md">Add To Cart <i class="fa fa-shopping-cart ml-1"></i></i></a>
+                </div>
+                <div class="col-md-4 d-none d-md-block">
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12">
+        <h3 class="font-weight-bold text-center">Reviews</h3>
+    </div>
+    <div class="container mt-5">
+        <div class="row text-center text-md-left">
+            <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-10 ml-auto">
+                    @if (count($reviews->where('product_id', $product->id))>0)
+                        <h5 class="font-weight-bold">Overall Rating: {{$reviews->where('product_id', $product->id)->avg('rating')}}/5</h5>
+
+                        <?php $rating = $reviews->where('product_id', $product->id)->avg('rating') ?>
+
+                        <p>                        
+                            <div>
+                                @for ($i = 0; $i < 5; $i++)
+                                    @if($rating>0)
+                                        @if($rating >0.5)
+                                            <i class="fa fa-star"></i>
+                                        @else
+                                            <i class="fa fa-star-half-empty"></i>
+                                        @endif
+                                        @php $rating--; @endphp
+                                    @else
+                                        <i class="fa fa-star-o"></i>
+                                    @endif
+                                @endfor
+                            </div> 
+                        </p>
+                        <p style="font-size:12px;">{{$product->product_name}}, based on {{ $reviews->count() }} reviews, starting at Rs. {{$product->price}} per unit.</p>
+                    @else
+                    <h5 class="font-weight-bold">Overall Rating: N/A</h5>
+                    <p style="font-size:12px;">Be the first one to review!</p>
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-10 mr-auto">
+                    <p class="mt-3">We'd love to read your review, add this to a future delivery in order to review it.</p>
+                </div>
+            </div>
+        </div>
+        @foreach ($userreviews as $review)
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                <div class="col-sm-12 col-md-10 ml-auto">
+
+                    <?php $userrating = $review->rating ?>
+
+                    <p>                        
+                        <div>
+                            @for ($i = 0; $i < 5; $i++)
+                                @if($userrating>0)
+                                    @if($userrating >0.5)
+                                        <i class="fa fa-star"></i>
+                                    @else
+                                        <i class="fa fa-star-half-empty"></i>
+                                    @endif
+                                    @php $userrating--; @endphp
+                                @else
+                                    <i class="fa fa-star-o"></i>
+                                @endif
+                            @endfor
+                        </div> 
+                    </p>
+                    
+                    <p class="font-weight-bold m-0">30 chars</p>
+                    <small>{{ date('d F, Y', strtotime($review->created_at)) }}</small>
+
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="col-sm-12 col-md-10 mr-autos">
+                    <p class="mt-3">{{ $review->review}}</p>
+                    <p class="font-weight-bold">
+                    {{ \App\User::where(['id' => $review->user_id])->pluck('firstname')->first() }}
+                    {{ \App\User::where(['id' => $review->user_id])->pluck('lastname')->first() }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        <div class="mt-4 pagination-sm">{{$userreviews->links()}}</div>
     </div>
 </div>
 @endsection
