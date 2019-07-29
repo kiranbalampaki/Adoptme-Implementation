@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid mt-3">
-    <div class="container">
+    <div class="">
         <div class="row text-justify">
             {{-- main --}}
             <div class="col-9 col-sm-9 col-xs-8">
@@ -74,11 +74,25 @@
             </div>
             {{-- main --}}
 
-            <div class="col-3 col-sm-3 col-xs-4 bg-secondary p-3">
-                <div><h5 class="text-light text-center">More</h5></div>
+            <div class="col-3 col-sm-3 col-xs-4 p-3" style="border-left: 1px solid #ddddef">
+                <div><h3 class="font-weight-bold text-center">More</h3></div>
                 <hr>
+                @foreach($allpets as $pet)
+                <a href="/pets/{{$pet->id}}" id="unstyled-link">
+                    <div class="row">
+                        <div class="col-6 m-0">
+                            <img class="" style="width: 100%; height: 5vw; object-fit: cover;" src="../assets/uploads/pets/{{$pet->pet_photo}}" alt="">
+                        </div>
+                        <div class="col-6 p-0 pr-3">
+                            <h6 class="card-title font-weight-bold m-0">{{$pet->name}}</h6>
+                            <small>{{ $pet->breed }}</small><br>
+                            <small>@if($pet->gender=='m') Male @else Female @endif | {{ $pet->age }} | {{ $pet->size }}</small>
+                        </div>
+                    </div>
+                    </a>
+                    <hr>
+                @endforeach
             </div>
-
         </div>
     </div>
 </div>

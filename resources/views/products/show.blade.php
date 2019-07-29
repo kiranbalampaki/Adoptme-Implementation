@@ -123,7 +123,7 @@
                         </div> 
                     </p>
                     
-                    <p class="font-weight-bold m-0">30 chars</p>
+                    <p class="font-weight-bold m-0">Nice Product</p>
                     <small>{{ date('d F, Y', strtotime($review->created_at)) }}</small>
 
                 </div>

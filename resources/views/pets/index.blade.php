@@ -21,7 +21,7 @@
               <div class="col-12">
                   <label for="type">Type</label><br>
                   <input type="radio" name="type" value="dog"> Dog [{{ $pets->where('type', "dog")->count('id') }}]
-                  <input type="radio" name="type" value="cat" class="ml-3"> Cat [{{ $pets->where('gender', "cat")->count('id') }}]
+                  <input type="radio" name="type" value="cat" class="ml-3"> Cat [{{ $pets->where('type', "cat")->count('id') }}]
               </div>
           </div>
           <hr>

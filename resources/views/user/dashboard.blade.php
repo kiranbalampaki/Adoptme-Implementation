@@ -117,7 +117,16 @@
                 @foreach ($messages as $message)
                   <a class="dropdown-item d-flex align-items-center" href="/messages/{{$message->channel_id}}">
                     <div class="dropdown-list-image mr-3">
-                      <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                    @if ($message->sender==Auth::user()->id)
+                    <?php $img = \App\User::where(['id' => $message->receiver])->pluck('profile_picture')->first() ?>
+                    @else
+                    <?php $img = \App\User::where(['id' => $message->sender])->pluck('profile_picture')->first() ?>
+                    @endif
+                      @if ($img!=null)
+                          <img style="border-radius:50px;" src="{{asset('assets/uploads/profilepictures/'.$img)}}" alt="" />
+                      @else
+                          <img src="https://i.stack.imgur.com/HQwHI.jpg" alt="" />
+                      @endif
                     </div>
                     <div class="">
                       

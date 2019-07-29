@@ -51,7 +51,7 @@
                   <div class="card text-center">
                       <img class="card-img mt-3" style="height:80%; width:80%; margin:auto" src="../assets/uploads/products/{{$product->product_image}}" alt="">
                       <div class="card-body">
-                      <a href="/pets/{{$product->id}}" id="unstyled-link" style="font-size:17px;">
+                      <a href="/products/{{$product->id}}" id="unstyled-link" style="font-size:17px;">
                       <p class="card-title font-weight-bold">{{$product->product_name}}</p>
                       <p class="card-subtitle mb-2 text-muted" style="font-size:12px">{{ $categories->where('id', $product->category_id)->pluck('category_name')->first() }}</p></a>
                       {{-- <a href="/" class="btn btn-danger mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a> --}}

@@ -21,7 +21,8 @@
                 <div class="col-12">
                     <label for="category">Categories</label><br>
                     @foreach($categories as $category)
-                    <input type="radio" name="category[]" value="{{$category->id}}" <?php if (isset($_GET['category']) && in_array($category->id, $_GET['category'])) { echo "checked='checked'"; } ?>>
+                    <input type="radio" name="category" value="{{$category->id}}"
+                    <?php if (isset($_GET['category']) && in_array($category->id, $_GET['category'])) { echo "checked='checked'"; } ?>>
                     {{ $categories->where('id', $category->id)->pluck('category_name')->first() }}
                     [{{ $allproducts->where('category_id', $category->id)->count('id') }}]<br>
                     @endforeach

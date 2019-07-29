@@ -24,15 +24,6 @@ class PetController extends Controller
         if(!empty($request->type)){
             $pets=Pet::where('type', '=', $request->type)->get();
         }
-        // if (($request->has('type')) || ($request->has('gender'))) {
-        //     $pets = Pet::where('type',$request->type)->where('gender',$request->gender)->orderBy('id','desc')->get();
-        // }
-        // $fields = ['type', 'gender','age','size','color'];
-        // foreach($fields as $field){
-        //     if(!empty($request->$field)){
-                
-        //     }
-        // }
         return view('pets.index')->with('pets', $pets);
     }
     /**
@@ -105,7 +96,8 @@ class PetController extends Controller
     public function show($id)
     {
         $pet = Pet::find($id);
-        return view('pets.show')->with('pet',$pet);
+        $allpets = Pet::all();
+        return view('pets.show', compact('pet','allpets'));
     }
 
     /**
